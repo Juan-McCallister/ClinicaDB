@@ -1,0 +1,58 @@
+﻿@model Camilo_Rendon.Models.CitasMedica
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-center mb-4">Editar cita</h1>
+
+<div class="container d-flex justify-content-center">
+    <div class="card p-4 shadow-lg" style="width: 40rem;">
+        <h4 class="text-center">Detalles citas</h4>
+        <hr />
+
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="IdCita" />
+
+            <div class="mb-3">
+                <label asp-for="IdPaciente" class="form-label fw-bold">Paciente</label>
+                <select asp-for="IdPaciente" class="form-select" asp-items="ViewBag.IdPaciente"></select>
+                <span asp-validation-for="IdPaciente" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="IdMedico" class="form-label fw-bold">Doctor</label>
+                <select asp-for="IdMedico" class="form-select" asp-items="ViewBag.IdMedico"></select>
+                <span asp-validation-for="IdMedico" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="FechaHora" class="form-label fw-bold">Date & Time</label>
+                <input asp-for="FechaHora" type="datetime-local" class="form-control" />
+                <span asp-validation-for="FechaHora" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Estado" class="form-label fw-bold">Estado</label>
+                <select asp-for="Estado" class="form-select">
+                    <option>Agendada</option>
+                    <option>Reprogramada</option>
+                    <option>Cancelada</option>
+                </select>
+            </div>
+
+            <div class="text-center mt-3">
+                <button type="submit" class="btn btn-success px-4">Guardar</button>
+                <a asp-action="Index" class="btn btn-secondary px-4">Atras</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

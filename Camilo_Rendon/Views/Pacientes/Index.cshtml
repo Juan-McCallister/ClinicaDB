@@ -1,0 +1,101 @@
+﻿@model IEnumerable<Camilo_Rendon.Models.Paciente>
+
+@{
+    ViewData["Title"] = "Lista de Pacientes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <h1 class="text-center text-primary fw-bold">Lista de Pacientes</h1>
+
+    <p class="text-end">
+        <a asp-action="Create" class="btn btn-success">Agregar Nuevo Paciente</a>
+    </p>
+
+    <form method="get" class="mb-3">
+        <div class="input-group">
+            <input type="text" name="searchString" class="form-control rounded-start" placeholder="Buscar por Identificación" value="@ViewData["CurrentFilter"]">
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </div>
+    </form>
+
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered shadow-sm rounded">
+            <thead class="table-primary text-center">
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.NombreCompleto)</th>
+                    <th>@Html.DisplayNameFor(model => model.NumeroIdentificacion)</th>
+                    <th>@Html.DisplayNameFor(model => model.Direccion)</th>
+                    <th>@Html.DisplayNameFor(model => model.Telefono)</th>
+                    <th>@Html.DisplayNameFor(model => model.HistorialMedico)</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody class="text-center">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.NombreCompleto)</td>
+                        <td>@Html.DisplayFor(modelItem => item.NumeroIdentificacion)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Direccion)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Telefono)</td>
+                        <td>@Html.DisplayFor(modelItem => item.HistorialMedico)</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.IdPaciente" class="btn btn-warning btn-sm">Editar</a>
+                            <a asp-action="Details" asp-route-id="@item.IdPaciente" class="btn btn-info btn-sm">Detalles</a>
+                            <a asp-controller="Pacientes" asp-action="DeleteConfirmed" asp-route-id="@item.IdPaciente" onclick="return confirmar()" class="btn btn-danger btn-sm">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function confirmar(){
+            return confirm("¿Estás seguro de eliminar este paciente?");
+        }
+    </script>
+}
+
+<style>
+    .table th, .table td {
+        vertical-align: middle;
+    }
+
+    .btn {
+        transition: all 0.3s ease-in-out;
+    }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+</style>
+@if (TempData["ErrorMessage"] != null)
+{
+    <div id="alerta" class="alerta-flotante">
+        @TempData["ErrorMessage"]
+    </div>
+
+    <script>
+        setTimeout(() => {
+            document.getElementById("alerta").style.display = "none";
+        }, 4000); // Oculta la alerta después de 4 segundos
+    </script>
+
+    <style>
+        .alerta-flotante {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #dc3545; /* Rojo para errores */
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+    </style>
+}

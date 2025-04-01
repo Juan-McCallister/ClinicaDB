@@ -1,0 +1,45 @@
+﻿@model Camilo_Rendon.Models.CitasMedica
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-center mb-4">Crear Cita</h1>
+
+<div class="container d-flex justify-content-center">
+    <div class="card p-4 shadow-lg" style="width: 40rem;">
+        <hr />
+
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="mb-3">
+                <label asp-for="IdPaciente" class="form-label fw-bold">Paciente</label>
+                <select asp-for="IdPaciente" class="form-select" asp-items="ViewBag.IdPaciente"></select>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="IdMedico" class="form-label fw-bold">Medico</label>
+                <select asp-for="IdMedico" class="form-select" asp-items="ViewBag.IdMedico"></select>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="FechaHora" class="form-label fw-bold">Date & Time</label>
+                <input asp-for="FechaHora" type="datetime-local" class="form-control" />
+                <span asp-validation-for="FechaHora" class="text-danger"></span>
+            </div>
+
+            <div class="text-center mt-3">
+                <button type="submit" class="btn btn-success px-4">Crear</button>
+                <a asp-action="Index" class="btn btn-secondary px-4">Atras</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,63 @@
+﻿@model Camilo_Rendon.Models.Reporte
+
+@{
+    ViewData["Title"] = "Edit Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-lg p-4">
+        <h1 class="text-center text-warning">Editar Reporte</h1>
+        <hr />
+
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+                    <input type="hidden" asp-for="IdReporte" />
+
+                    <div class="mb-3">
+                        <label asp-for="IdMedico" class="form-label fw-bold"></label>
+                        <select asp-for="IdMedico" class="form-select" asp-items="ViewBag.IdMedico"></select>
+                        <span asp-validation-for="IdMedico" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="TotalCitas" class="form-label fw-bold"></label>
+                        <input asp-for="TotalCitas" class="form-control" placeholder="Enter total appointments" />
+                        <span asp-validation-for="TotalCitas" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="CitasCanceladas" class="form-label fw-bold"></label>
+                        <input asp-for="CitasCanceladas" class="form-control" placeholder="Enter canceled appointments" />
+                        <span asp-validation-for="CitasCanceladas" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="CitasReprogramadas" class="form-label fw-bold"></label>
+                        <input asp-for="CitasReprogramadas" class="form-control" placeholder="Enter rescheduled appointments" />
+                        <span asp-validation-for="CitasReprogramadas" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="PacientesFrecuentes" class="form-label fw-bold"></label>
+                        <input asp-for="PacientesFrecuentes" class="form-control" placeholder="Enter frequent patients count" />
+                        <span asp-validation-for="PacientesFrecuentes" class="text-danger"></span>
+                    </div>
+
+                    <div class="text-center">
+                        <input type="submit" value="Guardar" class="btn btn-success px-4" />
+                        <a asp-action="Index" class="btn btn-secondary px-4 ms-2">Atras</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

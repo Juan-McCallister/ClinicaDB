@@ -1,0 +1,32 @@
+﻿@model Camilo_Rendon.Models.CitasMedica
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-lg p-4">
+        <h1 class="text-center text-primary">Detalle cita</h1>
+        <hr />
+
+        <dl class="row">
+            <dt class="col-sm-4 fw-bold">Date & Time</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.FechaHora)</dd>
+
+            <dt class="col-sm-4 fw-bold">Estado</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.Estado)</dd>
+
+            <dt class="col-sm-4 fw-bold">Medico ID</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.IdMedicoNavigation.IdMedico)</dd>
+
+            <dt class="col-sm-4 fw-bold">Paciente ID</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.IdPacienteNavigation.IdPaciente)</dd>
+        </dl>
+
+        <div class="text-center mt-3">
+            <a asp-action="Edit" asp-route-id="@Model?.IdCita" class="btn btn-warning px-4">Editar</a>
+            <a asp-action="Index" class="btn btn-secondary px-4">Atras</a>
+        </div>
+    </div>
+</div>

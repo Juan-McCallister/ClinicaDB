@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Camilo_Rendon.Models.Reporte>
+
+@{
+    ViewData["Title"] = "Lista de Reportes Médicos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <h1 class="text-center text-primary fw-bold">Lista de Reportes Médicos</h1>
+
+    <p class="text-end">
+        <a asp-action="Create" class="btn btn-success">Agregar Nuevo Reporte</a>
+    </p>
+
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered shadow-sm rounded">
+            <thead class="table-primary text-center">
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.TotalCitas)</th>
+                    <th>@Html.DisplayNameFor(model => model.CitasCanceladas)</th>
+                    <th>@Html.DisplayNameFor(model => model.CitasReprogramadas)</th>
+                    <th>@Html.DisplayNameFor(model => model.PacientesFrecuentes)</th>
+                    <th>@Html.DisplayNameFor(model => model.IdMedicoNavigation)</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody class="text-center">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.TotalCitas)</td>
+                        <td>@Html.DisplayFor(modelItem => item.CitasCanceladas)</td>
+                        <td>@Html.DisplayFor(modelItem => item.CitasReprogramadas)</td>
+                        <td>@Html.DisplayFor(modelItem => item.PacientesFrecuentes)</td>
+                        <td>@Html.DisplayFor(modelItem => item.IdMedicoNavigation.IdMedico)</td>
+                        <td>
+                            
+                            <a asp-action="Details" asp-route-id="@item.IdReporte" class="btn btn-info btn-sm">Detalles</a>
+                            <a asp-controller="Reportes" asp-action="DeleteConfirmed" asp-route-id="@item.IdReporte" onclick="return confirmar()" class="btn btn-danger btn-sm">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function confirmar(){
+            return confirm("¿Estás seguro de eliminar este reporte médico?");
+        }
+    </script>
+}
+
+<style>
+    .table th, .table td {
+        vertical-align: middle;
+    }
+
+    .btn {
+        transition: all 0.3s ease-in-out;
+    }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+</style>

@@ -1,0 +1,43 @@
+﻿@model Camilo_Rendon.Models.Reporte
+
+@{
+    ViewData["Title"] = "Create Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-lg p-4">
+        <h1 class="text-center text-primary">Create Report</h1>
+        <hr />
+
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                    <div class="mb-3">
+                        <label asp-for="IdMedico" class="form-label fw-bold"></label>
+                        <select asp-for="IdMedico" class="form-select" asp-items="ViewBag.IdMedico"></select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="PacientesFrecuentes" class="form-label fw-bold"></label>
+                        <input asp-for="PacientesFrecuentes" class="form-control" placeholder="Enter frequent patients count" />
+                        <span asp-validation-for="PacientesFrecuentes" class="text-danger"></span>
+                    </div>
+
+                    <div class="text-center">
+                        <input type="submit" value="Create" class="btn btn-success px-4" />
+                        <a asp-action="Index" class="btn btn-secondary px-4 ms-2">Back to List</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

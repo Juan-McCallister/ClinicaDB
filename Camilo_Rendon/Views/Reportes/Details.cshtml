@@ -1,0 +1,39 @@
+﻿@model Camilo_Rendon.Models.Reporte
+
+@{
+    ViewData["Title"] = "Detalles del Reporte";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-lg p-4">
+        <h1 class="text-center text-primary">Detalles del Reporte</h1>
+        <hr />
+
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <dl class="row">
+                    <dt class="col-sm-4 fw-bold text-secondary">Total de Citas:</dt>
+                    <dd class="col-sm-8">@Html.DisplayFor(model => model.TotalCitas)</dd>
+
+                    <dt class="col-sm-4 fw-bold text-secondary">Citas Canceladas:</dt>
+                    <dd class="col-sm-8">@Html.DisplayFor(model => model.CitasCanceladas)</dd>
+
+                    <dt class="col-sm-4 fw-bold text-secondary">Citas Reprogramadas:</dt>
+                    <dd class="col-sm-8">@Html.DisplayFor(model => model.CitasReprogramadas)</dd>
+
+                    <dt class="col-sm-4 fw-bold text-secondary">Pacientes Frecuentes:</dt>
+                    <dd class="col-sm-8">@Html.DisplayFor(model => model.PacientesFrecuentes)</dd>
+
+                    <dt class="col-sm-4 fw-bold text-secondary">ID del Médico:</dt>
+                    <dd class="col-sm-8">@Html.DisplayFor(model => model.IdMedicoNavigation.IdMedico)</dd>
+                </dl>
+
+                <div class="text-center mt-4">
+                    <a asp-action="Edit" asp-route-id="@Model?.IdReporte" class="btn btn-warning px-4">Editar</a>
+                    <a asp-action="Index" class="btn btn-secondary px-4 ms-2">Volver a la Lista</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Camilo_Rendon.Models.CitasMedica>
+
+@{
+    ViewData["Title"] = "Lista de Citas Médicas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <h1 class="text-center text-primary fw-bold">Lista de Citas Médicas</h1>
+
+    <p class="text-end">
+        <a asp-action="Create" class="btn btn-success">Agregar Nueva Cita</a>
+    </p>
+
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered shadow-sm rounded">
+            <thead class="table-primary text-center">
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.FechaHora)</th>
+                    <th>@Html.DisplayNameFor(model => model.Estado)</th>
+                    <th>Nombre Médico</th>
+                    <th>Nombre Paciente</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody class="text-center">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.FechaHora)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Estado)</td>
+                        <td>@Html.DisplayFor(modelItem => item.IdMedicoNavigation.NombreCompleto)</td>
+                        <td>@Html.DisplayFor(modelItem => item.IdPacienteNavigation.NombreCompleto)</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.IdCita" class="btn btn-warning btn-sm">Editar</a>
+                            <a asp-action="Details" asp-route-id="@item.IdCita" class="btn btn-info btn-sm">Detalles</a>
+                            <a asp-controller="CitasMedicas" asp-action="DeleteConfirmed" asp-route-id="@item.IdCita" onclick="return confirmar()" class="btn btn-danger btn-sm">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function confirmar(){
+            return confirm("¿Estás seguro de eliminar esta cita médica?");
+        }
+    </script>
+}
+
+<style>
+    .table th, .table td {
+        vertical-align: middle;
+    }
+
+    .btn {
+        transition: all 0.3s ease-in-out;
+    }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+</style>

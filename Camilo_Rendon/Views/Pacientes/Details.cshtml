@@ -1,0 +1,56 @@
+﻿@model Camilo_Rendon.Models.Paciente
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-center">paciente detalles</h1>
+
+<div class="container d-flex justify-content-center">
+    <div class="card p-4 shadow-lg" style="width: 40rem;">
+        <h4 class="text-center">Paciente Information</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-4 fw-bold text-end">
+                @Html.DisplayNameFor(model => model.NombreCompleto)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.NombreCompleto)
+            </dd>
+
+            <dt class="col-sm-4 fw-bold text-end">
+                @Html.DisplayNameFor(model => model.NumeroIdentificacion)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.NumeroIdentificacion)
+            </dd>
+
+            <dt class="col-sm-4 fw-bold text-end">
+                @Html.DisplayNameFor(model => model.Direccion)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Direccion)
+            </dd>
+
+            <dt class="col-sm-4 fw-bold text-end">
+                @Html.DisplayNameFor(model => model.Telefono)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Telefono)
+            </dd>
+
+            <dt class="col-sm-4 fw-bold text-end">
+                @Html.DisplayNameFor(model => model.HistorialMedico)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.HistorialMedico)
+            </dd>
+        </dl>
+
+        <div class="text-center mt-3">
+            <a asp-action="Editar" asp-route-id="@Model?.IdPaciente" class="btn btn-warning px-4">Edit</a>
+            <a asp-action="Index" class="btn btn-secondary px-4">Atras</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+﻿@model Camilo_Rendon.Models.Medico
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-center text-primary">Crear Medico</h1>
+
+
+<hr />
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <form asp-action="Create" class="p-4 border rounded shadow bg-light">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group mb-3">
+                <label asp-for="NombreCompleto" class="form-label fw-bold"></label>
+                <input asp-for="NombreCompleto" class="form-control" />
+                <span asp-validation-for="NombreCompleto" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Especialidad" class="form-label fw-bold"></label>
+                <input asp-for="Especialidad" class="form-control" />
+                <span asp-validation-for="Especialidad" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="CorreoElectronico" class="form-label fw-bold"></label>
+                <input asp-for="CorreoElectronico" class="form-control" />
+                <span asp-validation-for="CorreoElectronico" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Telefono" class="form-label fw-bold"></label>
+                <input asp-for="Telefono" class="form-control" />
+                <span asp-validation-for="Telefono" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="HorarioAtencion" class="form-label fw-bold"></label>
+                <input asp-for="HorarioAtencion" class="form-control" />
+                <span asp-validation-for="HorarioAtencion" class="text-danger"></span>
+            </div>
+            <div class="form-group text-center">
+                <input type="submit" value="Crear" class="btn btn-primary px-4" />
+                <a asp-action="Index" class="btn btn-outline-secondary ms-2">Volver</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,78 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container text-center py-5">
+    <h1 class="display-4 text-primary fw-bold">Bienvenido</h1>
+    <p class="lead">Descubre más sobre <a href="https://learn.microsoft.com/aspnet/core" class="text-decoration-none text-info fw-semibold">desarrollo web con ASP.NET Core</a>.</p>
+</div>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="container mt-5">
+        <h1 class="text-center mb-4 text-primary fw-bold">Gestión de Citas Médicas - Clínica</h1>
+
+        <div class="row g-4 justify-content-center">
+            @foreach (var item in new[] {
+        new { Title = "Médicos", Desc = "Gestión de médicos y especialidades.", Image = "https://us.123rf.com/450wm/fengdr/fengdr2401/fengdr240100006/221488206-3d-renderizado-personaje-de-dibujos-animados-m%C3%A9dicos-equipo-internacional-de-profesionales-de-la.jpg?ver=6", Link = Url.Action("Index", "Medicos") },
+        new { Title = "Pacientes", Desc = "Consulta y administración de pacientes.", Image = "https://www.shutterstock.com/image-vector/cartoon-man-hospital-bed-600nw-196377467.jpg", Link = Url.Action("Index", "Pacientes") },
+        new { Title = "Citas Médicas", Desc = "Agenda y gestión de citas médicas.", Image = "https://previews.123rf.com/images/artenot/artenot1205/artenot120502511/13845264-m%C3%A9dico-de-divertidos-dibujos-animados.jpg", Link = Url.Action("Index", "CitasMedicas") },
+        new { Title = "Reportes", Desc = "Consulta reportes médicos detallados.", Image = "https://static.vecteezy.com/system/resources/previews/005/951/256/non_2x/flat-design-cartoon-doctor-presenting-on-emtpy-space-file-of-medical-report-illustration-vector.jpg", Link = Url.Action("Index", "Reportes") }
+        })
+            {
+                <div class="col-lg-4 col-md-6">
+                    <div class="card shadow-lg border-0 rounded-5 overflow-hidden custom-card">
+                        <img src="@item.Image" class="card-img-top" alt="@item.Title">
+                        <div class="card-body text-center">
+                            <h5 class="card-title fw-bold">@item.Title</h5>
+                            <p class="card-text">@item.Desc</p>
+                            <a href="@item.Link" class="btn custom-btn">Ver @item.Title</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+
+<style>
+    body {
+        background-color: #f8f9fa;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .custom-btn {
+        background-color: #007bff;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 50px;
+        transition: all 0.3s ease-in-out;
+        font-weight: bold;
+        box-shadow: 0px 4px 10px rgba(0, 123, 255, 0.3);
+    }
+
+        .custom-btn:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+            box-shadow: 0px 6px 15px rgba(0, 86, 179, 0.5);
+        }
+
+    .custom-card {
+        transition: transform 0.3s ease-in-out;
+        border-radius: 20px;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+        width: 100%;
+    }
+
+        .custom-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+    .card-img-top {
+        height: 200px;
+        object-fit: cover;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+    }
+</style>
